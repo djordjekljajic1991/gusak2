@@ -1,0 +1,42 @@
+.slide {
+  position: absolute;
+  //width: 100%;
+  max-width: 100%;
+  height: auto;
+  @include respond(tab-port) {
+    max-width: 130%;
+  }
+}
+.slider__btn {
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+}
+.slider__btn--left {
+  left: 6%;
+  transform: translate(-50%, -50%);
+  &.slider__icon--left {
+    color: #fff;
+  }
+}
+.slider__btn--right {
+  right: 6%;
+  transform: translate(50%, -50%);
+}
+.slider__icon_btn {
+  position: absolute;
+  top: 6%;
+  right: 02%;
+  // transform: translate(, 0);
+}
+.slider__icon {
+  fill: white;
+  max-height: 10rem;
+  max-width: 10rem;
+  z-index: 10;
+  fill-opacity: 0.6;
+  @include respond(tab-port) {
+    max-height: 7rem;
+    max-width: 7rem;
+  }
+}

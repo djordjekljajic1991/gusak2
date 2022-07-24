@@ -1,0 +1,25 @@
+.section--description {
+  background-image: url("../src/img/dirty-old-paper-texture-2.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+.description--text-box {
+  padding: 2rem;
+
+  // height: 50rem;
+  & .heading-3 {
+    padding: 2rem 0;
+    text-align: center;
+    font-style: italic;
+  }
+}
+.description--image-box {
+  background-image: url("/src/img/gusak-mapa.png");
+
+  background-size: cover;
+  background-position: center;
+  & .description--image {
+    max-width: 25rem;
+  }
+}

@@ -1,0 +1,23 @@
+.spinner {
+  margin: 25rem auto;
+  text-align: center;
+}
+.svg {
+  height: 6rem;
+  width: 6rem;
+  fill: red;
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.hidden {
+  display: none;
+}

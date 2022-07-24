@@ -1,0 +1,99 @@
+.section--other {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../src/img/dirty-old-paper-texture-2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-top: 1px solid #444;
+
+  // padding-top: 4rem;
+  grid-template-columns: repeat(2, 1fr);
+  & .heading-2 {
+    align-self: center;
+    margin: 4rem 0 2rem 0;
+    color: green;
+    font-size: 3.6rem;
+    font-weight: 500;
+  }
+}
+.section--other-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  @include respond(small-phone) {
+    grid-template-columns: 1fr;
+  }
+}
+.other-box {
+  display: flex;
+  flex-direction: column;
+
+  max-width: 40rem;
+  padding-bottom: 4rem;
+  background-color: aliceblue;
+  border: 0.4rem solid #fff;
+  border-radius: 2.5rem;
+  box-shadow: #00000028 0 0.9rem 0.9rem;
+  margin-bottom: 4rem;
+  @include respond(tab-port) {
+    max-width: 35rem;
+  }
+  @include respond(phone) {
+    max-width: 29rem;
+  }
+  & .heading-3 {
+    align-self: center;
+    margin: 4rem 0 2rem 0;
+    color: green;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+  & .other--img-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+    & .other--img {
+      width: 40%;
+      height: 100%;
+      align-self: center;
+      border-radius: 1rem;
+    }
+  }
+  & .lists {
+    display: flex;
+    flex-direction: column;
+    margin-top: 4rem;
+    gap: 2rem;
+    & li {
+      display: flex;
+      gap: 4rem;
+      margin-left: 2rem;
+      & .card__link,
+      & .card__link:active,
+      & .card__link::after,
+      & .card__link:hover {
+        text-decoration: none;
+        color: green;
+        font-size: 2.8rem;
+        @include respond(tab-port) {
+          font-size: 2.2rem;
+        }
+      }
+      @include respond(phone) {
+        gap: 2rem;
+      }
+    }
+
+    & .icon__card {
+      width: 5rem;
+      height: 5rem;
+      color: greenyellow;
+      @include respond(tab-port) {
+        width: 3rem;
+        height: 3rem;
+      }
+    }
+  }
+}

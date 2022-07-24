@@ -1,0 +1,29 @@
+{
+  "name": "gusak",
+  "version": "1.0.0",
+  "description": "",
+  "main": "model.js",
+  "scripts": {
+    "start": "npx parcel start ./*.html",
+    "build:css": "npm-run-all compile:sass prefix:css compress:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/djordjekljajic1991/gusak.git"
+  },
+  "author": "djordje kljajic",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/djordjekljajic1991/gusak/issues"
+  },
+  "homepage": "https://github.com/djordjekljajic1991/gusak#readme",
+  "dependencies": {
+    "@popperjs/core": "^2.11.5",
+    "bootstrap": "^5.2.0",
+    "core-js": "^3.23.4",
+    "node-sass": "^7.0.1",
+    "parcel": "^2.6.2",
+    "parcel-bundler": "^1.12.5",
+    "sass": "^1.53.0"
+  }
+}

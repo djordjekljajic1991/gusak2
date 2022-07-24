@@ -1,0 +1,80 @@
+.section--galery {
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-items: center;
+  background-image: url("../src/img/dirty-old-paper-texture-2.jpg");
+  background-position: center;
+  background-size: cover;
+
+  border-top: 1px solid #444;
+  justify-content: center;
+  padding: 2rem;
+}
+.section--galery {
+  & .galery--box {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+
+    @include respond(tab-port) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include respond(phone) {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+    @include respond(small-phone) {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+}
+///galery cards
+.img-box {
+  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  align-items: center;
+  margin: 4rem auto;
+
+  & .btn-galery {
+    text-align: center;
+    justify-self: center;
+    background-color: rgb(200, 183, 183);
+    border-radius: 1rem;
+    padding: 1rem 2rem;
+    border: none;
+    position: absolute;
+    bottom: 0px;
+    transform: translateY(35%);
+  }
+}
+.img {
+  max-height: 22.2rem;
+  max-width: 42rem;
+  border: 1rem solid #fff;
+
+  background-color: white;
+  //border: 1px solid #ddd;
+  border-radius: 1rem;
+  overflow: hidden;
+
+  //background-color: blue;
+}
+.image {
+  aspect-ratio: 16/9;
+  width: 100%;
+  max-width: 100%;
+  border-radius: 1rem;
+  height: auto;
+  transition: all 1s ease-in-out;
+  overflow: hidden;
+  // object-fit: cover;
+}
+.image:hover {
+  background-color: rebeccapurple;
+  transform: scale(1.1, 1.1);
+}
+
+//modal

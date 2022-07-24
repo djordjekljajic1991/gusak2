@@ -1,0 +1,111 @@
+.section--about {
+  background-color: azure;
+}
+.left--box {
+  position: relative;
+  overflow: hidden;
+  min-height: 50rem;
+  @include respond(tab-land) {
+    min-height: 40rem;
+  }
+  @include respond(tab-port) {
+    min-height: 35rem;
+  }
+  @include respond(phone) {
+    height: 60rem;
+  }
+  @include respond(small-phone) {
+    height: 40rem;
+  }
+}
+
+.right--box {
+  display: flex;
+  flex-direction: column;
+  justify-items: center;
+  grid-template-rows: 20rem 1fr;
+  margin-right: 0.8rem;
+  justify-items: flex-start;
+  padding-left: 2rem;
+  @include respond(phone) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+  @include respond(small-phone) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}
+
+.forecast--grid {
+  grid-column: 1/-1;
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr;
+  justify-items: flex-start;
+  align-items: center;
+  @include respond(phone) {
+    grid-column: auto;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  & h3 {
+    grid-column: 1/-1;
+    grid-row: 1/2;
+  }
+  & .temp {
+    font-size: 4rem;
+    text-align: center;
+    @include respond(tab-port) {
+      font-size: 3.2rem;
+    }
+  }
+  & .weather {
+    max-width: 10rem;
+    @include respond(tab-port) {
+      max-width: 8rem;
+    }
+  }
+  & .lists {
+    justify-self: center;
+    display: flex;
+    flex-direction: column;
+    font-size: 1.6rem;
+    font-weight: 500;
+    gap: 0.8rem;
+    @include respond(tab-land) {
+      gap: 0.25rem;
+    }
+    @include respond(tab-port) {
+      gap: 0.15rem;
+    }
+  }
+}
+
+.nexts--days {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  @include respond(small-desktop) {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    @include respond(phone) {
+      grid-column: 1/-1;
+      justify-self: center;
+    }
+  }
+  & .btn {
+    background-color: $color-header-background;
+    font-size: 2.8rem;
+    padding: 1rem;
+    text-align: center;
+    color: $color-header-text;
+    @include respond(tab-land) {
+      padding: 0.5rem;
+      font-size: 2.2rem;
+    }
+  }
+}
