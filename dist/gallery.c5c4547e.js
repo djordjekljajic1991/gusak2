@@ -879,6 +879,18 @@ try {
 
 var _regeneratorRuntime = require("regenerator-runtime");
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 var modal = document.querySelector(".modal");
 var closeModalBtn = document.querySelector(".modal-close");
 var overlay = document.querySelector(".overlay");
@@ -894,21 +906,40 @@ var spinner = document.querySelector(".spinner");
 var container = document.querySelector(".gallery__container");
 var folderName = document.getElementById("icona").textContent;
 folderName = folderName.replace(" ", "-").replace(" ", "-");
-console.log(folderName);
 var imgBox = document.querySelector(".modal__image-box");
 var src;
 var slideNum;
 
 var getImgUrl = function getImgUrl(slideNum) {
   var Data = Object.values(images)[slideNum].src.split("/");
-  console.log(Data);
   var urlData = Object.values(Data)[Object.keys(Data).length - 1].split(".");
   src = "".concat(Object.values(urlData)[-0], ".").concat(Object.values(urlData)[Object.keys(urlData).length - 1]);
   var src2 = src.split(".");
   var src2x = "".concat(src2[0], "@2x.").concat(src2[1]);
   imgBox.innerHTML = " ";
-  var markup = "\n      <img\n        class=\"modal-image\"\n        srcset=\"/src/img/galery/".concat(folderName, "/").concat(src2x, " 2x\"\n      />\n      ");
+  var markup = "\n      <img\n        class=\"modal-image lazy-img \"\n        src=\"/src/img/galery/".concat(folderName, "/").concat(src, "\"\n        data-src=\"/src/img/galery/").concat(folderName, "/").concat(src2x, "\"\n      />\n      ");
   imgBox.insertAdjacentHTML("afterbegin", markup);
+  var imgTarget = document.querySelector("img[data-src]");
+
+  var loadImg = function loadImg(entries, observer) {
+    var _entries = _slicedToArray(entries, 1),
+        entry = _entries[0];
+
+    if (!entry.isIntersecting) return;
+    entry.target.src = entry.target.dataset.src;
+    entry.target.addEventListener("load", function () {
+      imgTarget.src = imgTarget.dataset.src;
+      imgTarget.classList.remove("lazy-img");
+    });
+    observer.unobserve(entry.target);
+  };
+
+  var imgObserver = new IntersectionObserver(loadImg, {
+    root: null,
+    threshold: 0,
+    rootMargin: "200px"
+  });
+  imgObserver.observe(imgTarget);
 };
 
 var openImg = function openImg() {
@@ -938,11 +969,7 @@ for (var i = 0; i < btnsOpenModal.length; i++) {
   btnsOpenModal[i].addEventListener("click", openModal);
 }
 
-document.addEventListener("keydown", function (e) {
-  // console.log(e.key);
-  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-    closeModal();
-  }
+document.addEventListener("keydown", function (e) {// console.log(e.key);
 });
 closeModalBtn.addEventListener("click", function (e) {
   closeModal();
@@ -1006,7 +1033,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64411" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51977" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

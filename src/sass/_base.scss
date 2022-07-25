@@ -1,17 +1,18 @@
 $color-header-background: #dbe4ff;
 $color-header-text: #008000;
+$color-modal-forecast-background: #bac8ff;
 
 //mixins
 
 @mixin respond($breakpoint) {
   @if $breakpoint==small-phone {
     @media only screen and(max-width: 26.86em) {
-      @content;
+      @content; //420
     }
   }
   @if $breakpoint==phone {
     @media only screen and(max-width: 39.25em) {
-      @content;
+      @content; //628
     }
   }
 
@@ -29,7 +30,7 @@ $color-header-text: #008000;
   }
   @if $breakpoint==small-desktop {
     @media only screen and (max-width: 89.87em) {
-      @content;
+      @content; //1437
     }
   }
 

@@ -1,11 +1,10 @@
 import { getJSON } from "./helpers.js";
 import { URL_FORECAST, URL_TODAY } from "./config.js";
 import { async } from "regenerator-runtime";
-
-// let url = window.location.href.split("/");
-// let urlcore = Object.values(url)[Object.keys(url).length - 1];
-// console.log(url);
-
+const spinner = document.querySelector(".spinner");
+const containerIndex = document.querySelector(".container");
+let forecast7Days = document.querySelector(".forecast__modal_box");
+const body = document.querySelector("body");
 let url = window.location.href.split("/");
 const urlLocation = Object.values(url)[Object.keys(url).length - 1];
 
@@ -60,6 +59,7 @@ const createForecastObject = function (data) {
       pressureMB: day.pressureMB,
       visibilityKM: day.visibilityKM,
       pop: day.pop,
+      dateTimeISO: day.dateTimeISO,
     };
   });
   return {
@@ -70,7 +70,7 @@ const createForecastObject = function (data) {
 export let loadForecast = async function () {
   try {
     const data = await getJSON(`${URL_FORECAST}`);
-
+    console.log(data);
     state.forecast = createForecastObject(data);
   } catch (err) {
     console.error(`${err} bum bam bum`);
@@ -140,9 +140,6 @@ const controlWeather = async function () {
 
     //weatherTomorrowDetails();
     createWeatherDetails(state.forecast.days[1], ".tomorrow--details");
-    //console.log(state.weather);
-
-    // tempEl.textContent = `${state.weather.tempC}°C`;
   } catch (err) {
     console.error(err);
   }
@@ -150,6 +147,77 @@ const controlWeather = async function () {
 if (urlLocation !== "gallery.html") {
   controlWeather();
 }
+
+/////////////
+const createForecast = async function (data) {
+  let markup;
+  //const markup = `<img class="weather"  srcset="./src/img/icons/weather/${state.weather.icon} 1x,
+  //./src/img/icons/weather/${state.weather.icon2x} 2x"></img>`;
+
+  let today = new Date().toLocaleDateString("sr-SR");
+  let forecastDate = new Date(data.dateTimeISO).toLocaleDateString("sr-SR");
+  console.log(today);
+  let tomorrow = new Date(
+    new Date().setDate(new Date().getDate() + 1)
+  ).toLocaleDateString("sr-SR");
+
+  let date;
+  const getDatum = function () {
+    if (today === forecastDate) date = "Danas";
+    else if (tomorrow === forecastDate) date = "Sutra";
+    else date = forecastDate;
+  };
+  getDatum();
+  console.log(date);
+  try {
+    markup = `
+    <div class ="forecast--grid"> 
+    <img class="weather"  src="/src/img/icons/weather/${data.icon2x}"></img>
+    <div class="temp" >
+      <p class="tempa" >${data.minTempC}°C</p>
+      <p class="tempa" >${data.maxTempC}°C</p>
+    </div>
+     <h3 class="heading-3">${date}
+      </h3>
+  
+     <ul class="tomorrow--details lists">
+      <li>Vjetar: ${data.windSpeedKPH} km/h</li>
+      <li>Vjer. padavina: ${data.pop}%</li>
+      <li>Smijer vjetra: ${data.windDir}</li>
+      <li>Vlažnost: ${data.humidity}%</li>
+      <li>Vidljivost: ${Math.round(data.visibilityKM)} km</li>
+      <li>Pritisak: ${data.pressureMB} mB</li>
+      </ul>
+      </div>       `;
+
+    forecast7Days.insertAdjacentHTML("beforeend", markup);
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+////////////
+const btnOpenForecastModal = document.querySelector(".btn--forecast");
+const forecastModal = document.querySelector(".forecast__modal");
+btnOpenForecastModal.addEventListener("click", function () {
+  forecastModal.classList.remove("hidden");
+  body.style.position = "fixed";
+  forecast7Days.innerHTML = "";
+  state.forecast.days.forEach((el) => {
+    createForecast(el);
+  });
+});
+const btnCloseForecastModal = document.querySelector(".btn__close_modal");
+btnCloseForecastModal.addEventListener("click", function () {
+  forecastModal.classList.add("hidden");
+  body.style.position = "";
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !forecastModal.classList.contains("hidden")) {
+    forecastModal.classList.add("hidden");
+  }
+});
+
 const slider = function () {
   const slides = document.querySelectorAll(".slide");
   const btnLeft = document.querySelector(".slider__btn--left");
@@ -256,3 +324,10 @@ const observer = new IntersectionObserver((entries) => {
 });
 observer.observe(document.querySelector(".section--galery"));
 observer.observe(document.querySelector(".section--other"));
+
+/////loading spiner
+
+window.addEventListener("load", function () {
+  spinner.classList.add("hidden");
+  containerIndex.classList.remove("hidden");
+});

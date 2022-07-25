@@ -990,9 +990,10 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-// let url = window.location.href.split("/");
-// let urlcore = Object.values(url)[Object.keys(url).length - 1];
-// console.log(url);
+var spinner = document.querySelector(".spinner");
+var containerIndex = document.querySelector(".container");
+var forecast7Days = document.querySelector(".forecast__modal_box");
+var body = document.querySelector("body");
 var url = window.location.href.split("/");
 var urlLocation = Object.values(url)[Object.keys(url).length - 1];
 var galleryData = "";
@@ -1072,7 +1073,8 @@ var createForecastObject = function createForecastObject(data) {
       humidity: day.humidity,
       pressureMB: day.pressureMB,
       visibilityKM: day.visibilityKM,
-      pop: day.pop
+      pop: day.pop,
+      dateTimeISO: day.dateTimeISO
     };
   });
   return {
@@ -1093,22 +1095,23 @@ var loadForecast = /*#__PURE__*/function () {
 
           case 3:
             data = _context2.sent;
+            console.log(data);
             state.forecast = createForecastObject(data);
-            _context2.next = 11;
+            _context2.next = 12;
             break;
 
-          case 7:
-            _context2.prev = 7;
+          case 8:
+            _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
             console.error("".concat(_context2.t0, " bum bam bum"));
             throw _context2.t0;
 
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 7]]);
+    }, _callee2, null, [[0, 8]]);
   }));
 
   return function loadForecast() {
@@ -1185,9 +1188,7 @@ var controlWeather = /*#__PURE__*/function () {
             weatherTodayDetails();
             createWeatherIcon(state.forecast.days[1], ".tomorrow"); //weatherTomorrowDetails();
 
-            createWeatherDetails(state.forecast.days[1], ".tomorrow--details"); //console.log(state.weather);
-            // tempEl.textContent = `${state.weather.tempC}°C`;
-
+            createWeatherDetails(state.forecast.days[1], ".tomorrow--details");
             _context4.next = 14;
             break;
 
@@ -1211,7 +1212,71 @@ var controlWeather = /*#__PURE__*/function () {
 
 if (urlLocation !== "gallery.html") {
   controlWeather();
-}
+} /////////////
+
+
+var createForecast = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee5(data) {
+    var markup, today, forecastDate, tomorrow, date, getDatum;
+    return _regeneratorRuntime().wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            //const markup = `<img class="weather"  srcset="./src/img/icons/weather/${state.weather.icon} 1x,
+            //./src/img/icons/weather/${state.weather.icon2x} 2x"></img>`;
+            today = new Date().toLocaleDateString("sr-SR");
+            forecastDate = new Date(data.dateTimeISO).toLocaleDateString("sr-SR");
+            console.log(today);
+            tomorrow = new Date(new Date().setDate(new Date().getDate() + 1)).toLocaleDateString("sr-SR");
+
+            getDatum = function getDatum() {
+              if (today === forecastDate) date = "Danas";else if (tomorrow === forecastDate) date = "Sutra";else date = forecastDate;
+            };
+
+            getDatum();
+            console.log(date);
+
+            try {
+              markup = "\n    <div class =\"forecast--grid\"> \n    <img class=\"weather\"  src=\"/src/img/icons/weather/".concat(data.icon2x, "\"></img>\n    <div class=\"temp\" >\n      <p class=\"tempa\" >").concat(data.minTempC, "\xB0C</p>\n      <p class=\"tempa\" >").concat(data.maxTempC, "\xB0C</p>\n    </div>\n     <h3 class=\"heading-3\">").concat(date, "\n      </h3>\n  \n     <ul class=\"tomorrow--details lists\">\n      <li>Vjetar: ").concat(data.windSpeedKPH, " km/h</li>\n      <li>Vjer. padavina: ").concat(data.pop, "%</li>\n      <li>Smijer vjetra: ").concat(data.windDir, "</li>\n      <li>Vla\u017Enost: ").concat(data.humidity, "%</li>\n      <li>Vidljivost: ").concat(Math.round(data.visibilityKM), " km</li>\n      <li>Pritisak: ").concat(data.pressureMB, " mB</li>\n      </ul>\n      </div>       ");
+              forecast7Days.insertAdjacentHTML("beforeend", markup);
+            } catch (err) {
+              console.error(err);
+            }
+
+          case 8:
+          case "end":
+            return _context5.stop();
+        }
+      }
+    }, _callee5);
+  }));
+
+  return function createForecast(_x3) {
+    return _ref5.apply(this, arguments);
+  };
+}(); ////////////
+
+
+var btnOpenForecastModal = document.querySelector(".btn--forecast");
+var forecastModal = document.querySelector(".forecast__modal");
+btnOpenForecastModal.addEventListener("click", function () {
+  forecastModal.classList.remove("hidden");
+  body.style.position = "fixed";
+  forecast7Days.innerHTML = "";
+  state.forecast.days.forEach(function (el) {
+    createForecast(el);
+  });
+});
+var btnCloseForecastModal = document.querySelector(".btn__close_modal");
+btnCloseForecastModal.addEventListener("click", function () {
+  forecastModal.classList.add("hidden");
+  body.style.position = "";
+});
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !forecastModal.classList.contains("hidden")) {
+    forecastModal.classList.add("hidden");
+  }
+});
 
 var slider = function slider() {
   var slides = document.querySelectorAll(".slide");
@@ -1313,7 +1378,12 @@ var observer = new IntersectionObserver(function (entries) {
   });
 });
 observer.observe(document.querySelector(".section--galery"));
-observer.observe(document.querySelector(".section--other"));
+observer.observe(document.querySelector(".section--other")); /////loading spiner
+
+window.addEventListener("load", function () {
+  spinner.classList.add("hidden");
+  containerIndex.classList.remove("hidden");
+});
 },{"./helpers.js":"src/js/helpers.js","./config.js":"src/js/config.js","regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1342,7 +1412,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64411" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51977" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

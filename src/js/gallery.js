@@ -16,7 +16,6 @@ const spinner = document.querySelector(".spinner");
 const container = document.querySelector(".gallery__container");
 let folderName = document.getElementById("icona").textContent;
 folderName = folderName.replace(" ", "-").replace(" ", "-");
-console.log(folderName);
 
 let imgBox = document.querySelector(".modal__image-box");
 let src;
@@ -24,7 +23,7 @@ let slideNum;
 
 const getImgUrl = function (slideNum) {
   const Data = Object.values(images)[slideNum].src.split("/");
-  console.log(Data);
+
   const urlData = Object.values(Data)[Object.keys(Data).length - 1].split(".");
 
   src = `${Object.values(urlData)[-0]}.${
@@ -37,11 +36,32 @@ const getImgUrl = function (slideNum) {
   imgBox.innerHTML = " ";
   const markup = `
       <img
-        class="modal-image"
-        srcset="/src/img/galery/${folderName}/${src2x} 2x"
+        class="modal-image lazy-img "
+        src="/src/img/galery/${folderName}/${src}"
+        data-src="/src/img/galery/${folderName}/${src2x}"
       />
       `;
   imgBox.insertAdjacentHTML("afterbegin", markup);
+
+  const imgTarget = document.querySelector("img[data-src]");
+  const loadImg = function (entries, observer) {
+    const [entry] = entries;
+    if (!entry.isIntersecting) return;
+    entry.target.src = entry.target.dataset.src;
+
+    entry.target.addEventListener("load", function () {
+      imgTarget.src = imgTarget.dataset.src;
+      imgTarget.classList.remove("lazy-img");
+    });
+    observer.unobserve(entry.target);
+  };
+  const imgObserver = new IntersectionObserver(loadImg, {
+    root: null,
+    threshold: 0,
+    rootMargin: "200px",
+  });
+
+  imgObserver.observe(imgTarget);
 };
 
 const openImg = function () {
@@ -71,10 +91,6 @@ for (let i = 0; i < btnsOpenModal.length; i++)
 
 document.addEventListener("keydown", function (e) {
   // console.log(e.key);
-
-  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
-    closeModal();
-  }
 });
 closeModalBtn.addEventListener("click", function (e) {
   closeModal();

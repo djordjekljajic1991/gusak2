@@ -131,10 +131,24 @@ body {
   }
 }
 
+.left--box .slide {
+  object-fit: contain;
+  position: absolute;
+  max-width: 100%;
+  height: auto;
+}
+
+@media only screen and (max-width: 61.44em) {
+  .left--box .slide {
+    max-width: 130%;
+  }
+}
+
 .right--box {
   display: flex;
   flex-direction: column;
   justify-items: center;
+  gap: 1rem;
   grid-template-rows: 20rem 1fr;
   margin-right: 0.8rem;
   justify-items: flex-start;
@@ -159,7 +173,6 @@ body {
 }
 
 .forecast--grid {
-  grid-column: 1/-1;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   justify-items: flex-start;
@@ -224,6 +237,8 @@ body {
 .nexts--days {
   margin-top: 2rem;
   margin-bottom: 2rem;
+  grid-column: 1/-1;
+  justify-self: center;
 }
 
 @media only screen and (max-width: 89.87em) {
@@ -253,6 +268,78 @@ body {
     padding: 0.5rem;
     font-size: 2.2rem;
   }
+}
+
+.forecast__modal {
+  position: fixed;
+  overflow-y: scroll;
+  top: 50%;
+  left: 50%;
+  z-index: 1000;
+  width: 90%;
+  background-color: #bac8ff;
+  border: 0.1rem solid #008000;
+  height: 80vh;
+  border-radius: 8px;
+  padding: 4rem;
+  animation: moveInTop 0.6s ease-out;
+  transform: translate(-50%, -50%);
+}
+
+.forecast__modal .forecast__modal__heading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forecast__modal .forecast__modal__heading .modal__close_icon {
+  height: 6rem;
+  width: 6rem;
+  background-color: #bac8ff;
+  cursor: pointer;
+  color: white;
+}
+
+.forecast__modal .forecast__modal__heading .btn__close_modal {
+  margin: 0 !important;
+  background-color: #bac8ff;
+  border: none;
+}
+
+.forecast__modal .forecast__modal_box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 4rem;
+  row-gap: 6rem;
+}
+
+@media only screen and (max-width: 78.13em) {
+  .forecast__modal .forecast__modal_box {
+    grid-template-columns: 1fr 1fr;
+    row-gap: 4rem;
+  }
+}
+
+@media only screen and (max-width: 61.44em) {
+  .forecast__modal .forecast__modal_box {
+    row-gap: 3rem;
+  }
+}
+
+@media only screen and (max-width: 39.25em) {
+  .forecast__modal .forecast__modal_box {
+    row-gap: 2rem;
+    grid-template-columns: 1fr;
+  }
+}
+
+.forecast__modal .forecast--grid {
+  padding: 0 !important;
+  justify-items: center !important;
+  align-items: center !important;
+}
+
+.forecast__modal .forecast--grid h3 {
+  justify-self: flex-start;
 }
 
 .heading-2 {
@@ -541,6 +628,17 @@ body {
   }
 }
 
+@keyframes moveInTop {
+  0% {
+    opacity: 0.4;
+    transform: translate(0%, -100rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
 @keyframes mymove {
   from {
     background-color: #ebeff700;
@@ -761,7 +859,7 @@ body {
 .modal .modal__image-box .modal-image {
   vertical-align: middle;
   text-align: center;
-  width: auto;
+  width: 100%;
   max-width: 100%;
   height: auto;
   overflow: hidden;
@@ -774,16 +872,8 @@ body {
   opacity: 0.5;
 }
 
-.slide {
-  position: absolute;
-  max-width: 100%;
-  height: auto;
-}
-
-@media only screen and (max-width: 61.44em) {
-  .slide {
-    max-width: 130%;
-  }
+.lazy-img {
+  filter: blur(1px);
 }
 
 .slider__btn {
@@ -833,8 +923,8 @@ body {
 }
 
 .svg {
-  height: 6rem;
-  width: 6rem;
+  height: 10em;
+  width: 10rem;
   fill: red;
   animation: rotate 2s infinite linear;
 }
