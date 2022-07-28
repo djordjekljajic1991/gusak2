@@ -9,12 +9,18 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: $color-header-text;
 
   & .name-logo {
-    color: $color-header-text;
     font-size: 3.2rem;
     font-style: italic;
     margin-left: 5rem;
+
+    & img {
+      height: 4rem;
+      width: auto;
+      vertical-align: middle;
+    }
   }
   & .lists {
     display: flex;

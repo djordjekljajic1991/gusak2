@@ -46,12 +46,15 @@
 .modal {
   margin: auto;
   width: 77%;
+  height: 90vh;
+  max-height: 90vh;
 
   top: 50%;
   left: 50%;
   position: fixed;
   z-index: 100;
   transform: translate(-50%, -47%);
+  vertical-align: center;
   border-radius: 1rem;
   @include respond(tab-land) {
     width: 90%;
@@ -65,16 +68,27 @@
     text-align: center;
     border-radius: 2rem;
     border: 0.1rem solid #000;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    white-space: nowrap;
+    & .helper {
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
 
     & .modal-image {
       vertical-align: middle;
       text-align: center;
-      width: 100%;
+      width: auto;
       max-width: 100%;
       height: auto;
+      max-height: 100%;
 
       overflow: hidden;
       border-radius: 2rem;
+      margin: auto;
     }
   }
 }

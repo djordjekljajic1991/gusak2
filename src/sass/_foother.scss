@@ -1,15 +1,17 @@
 .foother {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   background-color: $color-header-background;
-
   margin-bottom: 1rem;
-  padding: 0.5rem 0 0.5rem 5rem;
+  padding: 0.5rem 5rem 0.5rem 5rem;
+  @include respond(small-phone) {
+    flex-direction: column;
+  }
   & .heading-3 {
     color: $color-header-text;
   }
   & .logo_foother {
-    display: inline-block;
+    // display: inline-block;
     vertical-align: bottom;
     margin-left: 2rem;
     max-width: 2.8rem;

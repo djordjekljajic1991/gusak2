@@ -40,7 +40,7 @@ export const loadWeather = async function () {
 
     state.weather = createWeatherObject(data);
   } catch (err) {
-    console.error(`${err} bum bam bum`);
+    console.error(`${err}`);
     throw err;
   }
 };
@@ -70,7 +70,7 @@ const createForecastObject = function (data) {
 export let loadForecast = async function () {
   try {
     const data = await getJSON(`${URL_FORECAST}`);
-    console.log(data);
+
     state.forecast = createForecastObject(data);
   } catch (err) {
     console.error(`${err} bum bam bum`);
@@ -271,6 +271,7 @@ if (urlLocation !== "gallery.html") {
 export const galleryFunction = function () {
   const btn = document.querySelectorAll(".img-box").forEach((item) => {
     item.addEventListener("click", function (e) {
+      e.preventDefault();
       const data = e.target.closest(".img-box").dataset.set;
 
       window.location.href = `${data}.html`;
@@ -299,17 +300,20 @@ const closeMNB = document.querySelector(".btn_close-nav");
 const navList = document.querySelector(".navigation-lists");
 const outside = document.querySelector(".navigation-lists");
 
-openMNB.addEventListener("click", function () {
+openMNB.addEventListener("click", function (e) {
+  e.preventDefault();
   navList.classList.add("mobile_navigation");
   closeMNB.classList.remove("hidden");
   openMNB.classList.add("hidden");
 });
-outside.addEventListener("click", function () {
+outside.addEventListener("click", function (e) {
+  e.preventDefault();
   navList.classList.remove("mobile_navigation");
   openMNB.classList.remove("hidden");
   closeMNB.classList.add("hidden");
 });
-closeMNB.addEventListener("click", function () {
+closeMNB.addEventListener("click", function (e) {
+  e.preventDefault();
   navList.classList.remove("mobile_navigation");
   openMNB.classList.remove("hidden");
   closeMNB.classList.add("hidden");
@@ -324,10 +328,3 @@ const observer = new IntersectionObserver((entries) => {
 });
 observer.observe(document.querySelector(".section--galery"));
 observer.observe(document.querySelector(".section--other"));
-
-/////loading spiner
-
-window.addEventListener("load", function () {
-  spinner.classList.add("hidden");
-  containerIndex.classList.remove("hidden");
-});

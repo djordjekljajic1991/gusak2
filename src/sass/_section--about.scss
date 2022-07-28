@@ -184,6 +184,9 @@
     align-items: center !important;
     & h3 {
       justify-self: flex-start;
+      padding: 0 2rem;
+      border-radius: 2rem;
+      background: linear-gradient(to right, #748ffc, $color-header-background);
     }
   }
 }

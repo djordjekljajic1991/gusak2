@@ -340,6 +340,9 @@ body {
 
 .forecast__modal .forecast--grid h3 {
   justify-self: flex-start;
+  padding: 0 2rem;
+  border-radius: 2rem;
+  background: linear-gradient(to right, #748ffc, #dbe4ff);
 }
 
 .heading-2 {
@@ -413,13 +416,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: #008000;
 }
 
 .nav .name-logo {
-  color: #008000;
   font-size: 3.2rem;
   font-style: italic;
   margin-left: 5rem;
+}
+
+.nav .name-logo img {
+  height: 4rem;
+  width: auto;
+  vertical-align: middle;
 }
 
 .nav .lists {
@@ -486,20 +495,10 @@ body {
   padding: 2rem;
 }
 
-.description--text-box .heading-3 {
-  padding: 2rem 0;
+.text__center {
+  padding: 2rem 0 1rem 0;
   text-align: center;
   font-style: italic;
-}
-
-.description--image-box {
-  background-image: url("/gusak-mapa.765ffbbf.png");
-  background-size: cover;
-  background-position: center;
-}
-
-.description--image-box .description--image {
-  max-width: 25rem;
 }
 
 .section--galery {
@@ -828,11 +827,14 @@ body {
 .modal {
   margin: auto;
   width: 77%;
+  height: 90vh;
+  max-height: 90vh;
   top: 50%;
   left: 50%;
   position: fixed;
   z-index: 100;
   transform: translate(-50%, -47%);
+  vertical-align: center;
   border-radius: 1rem;
 }
 
@@ -854,16 +856,28 @@ body {
   text-align: center;
   border-radius: 2rem;
   border: 0.1rem solid #000;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.modal .modal__image-box .helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
 }
 
 .modal .modal__image-box .modal-image {
   vertical-align: middle;
   text-align: center;
-  width: 100%;
+  width: auto;
   max-width: 100%;
   height: auto;
+  max-height: 100%;
   overflow: hidden;
   border-radius: 2rem;
+  margin: auto;
 }
 
 .blur {
@@ -944,10 +958,16 @@ body {
 
 .foother {
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   background-color: #dbe4ff;
   margin-bottom: 1rem;
-  padding: 0.5rem 0 0.5rem 5rem;
+  padding: 0.5rem 5rem 0.5rem 5rem;
+}
+
+@media only screen and (max-width: 26.86em) {
+  .foother {
+    flex-direction: column;
+  }
 }
 
 .foother .heading-3 {
@@ -955,7 +975,6 @@ body {
 }
 
 .foother .logo_foother {
-  display: inline-block;
   vertical-align: bottom;
   margin-left: 2rem;
   max-width: 2.8rem;

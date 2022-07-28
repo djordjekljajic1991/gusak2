@@ -4,8 +4,19 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      name="description"
+      content="Author: Djordje Kljajic Author,
+    Name: Selo Gusak, Category: selo the countryside,
+   "
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="shortcut icon"
+      type="image/jpg"
+      href="src/img/icons/20210115_160815.jpg"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;300;400;500&family=Roboto:wght@400;500;700&display=swap"
       rel="stylesheet"
@@ -22,12 +33,7 @@
       src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
     ></script>
     <title>Gusak selo Gusak</title>
-    <!-- <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx"
-      crossorigin="anonymous"
-    /> -->
+
     <meta
       property="og:description"
       content="Selo gusak, Gusak-Gajevi, slatka farma meri, kuca za odmor, gusak istorij"
@@ -35,13 +41,11 @@
   </head>
 
   <body>
-    <div class="spinner">
-      <img class="svg" src="/src/img/icons/loader.png" />
-    </div>
-    <div class="container hidden">
+    <div class="container">
       <header class="header">
         <nav class="nav">
-          <h3 class="name-logo">--GUSAK--</h3>
+          <h3 class="name-logo">
+            <img class="flag" src="/src/img/SerbRepublicPNG.png"/> <span class="linear_G">GUSAK</span></h3>
           <button class="mobile_navigation-btn btn_open-nav">
             <ion-icon
               class="mobile_navigation-icon"
@@ -77,12 +81,32 @@
 
       <div id="about" class="section--about grid--col-2">
         <div class="left--box slider">
-          <img class="slide" src="/src/img/pozadina1.jpg" />
-          <img class="slide" src="/src/img/pozadina.webp" />
-
-          <img class="slide" src="src/img/Draganpozadina1.jpg" />
-          <img class="slide" src="src/img/Draganpozadina2.jpg" />
-          <img class="slide" src="src/img/Draganpozadina3.jpg" />
+          <img
+            class="slide"
+            src="/src/img/pozadina1.jpg"
+            alt="image of Gusak"
+          />
+          <img class="slide" src="/src/img/pozadina.jpg" alt="image of Gusak" />
+          <img
+            class="slide"
+            src="src/img/DJI_0699@2x.jpg"
+            alt="image of Gusak"
+          />
+          <img
+            class="slide"
+            src="src/img/Draganpozadina1.jpg"
+            alt="image of Gusak"
+          />
+          <img
+            class="slide"
+            src="src/img/Draganpozadina2.jpg"
+            alt="image of Gusak"
+          />
+          <img
+            class="slide"
+            src="src/img/Draganpozadina3.jpg"
+            alt="image of Gusak"
+          />
 
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -122,7 +146,6 @@
           </div>
 
           <div class="nexts--days">
-            <!-- <img src="src\img\icons\weather\tstormswn.png" alt="" /> -->
             <button class="btn--forecast btn">Prognoza za naredne dane</button>
           </div>
           <div class="forecast__modal hidden">
@@ -143,27 +166,44 @@
       </div>
       <div id="description" class="section--description">
         <div class="description--text-box">
-          <h3 class="heading-3">Osnovni podaci o selu Gusak</h3>
+          <h2 class="heading-2 text__center">Osnovni podaci o selu Gusak</h2>
           <p class="desctiption-text">
-            &emsp; Gusak je selo u opštini Prnjavor. Nalazi se na 200-270 m.n.v.
+            &emsp; Gusak je selo u opštini Prnjavor. Nalazi se na 200-300 m.n.v.,
+             najvišlja tačka je 342 m.n.v.
             Površina je 4,70 km², udaljeno je 15 km od opštinskog centra.
-            Pripada mjesnoj zajednici Gusak-gajevi. Razbijenog je tipa, a
+            Pripada mjesnoj zajednici Gusak-Gajevi. Razbijenog je tipa, a
             zaseoci su Gornji i Donji Gusak. Smješteno je na brežuljkastom
             terenu, prekrivenom oranicama i bjelogoričnom šumom. U ataru postoje
             potoci Vasiljevac, Jelinac i Ugljarica, te izvori Bogdanovac i Dobra
             Voda. Prema popisu iz 2013. godine selo ima 59 domaćinstava i 179
             stanovnika. Mještani se uglavnom bave poljoprivredom. Najbliža crkva
-            je u Potočanima.
-          </p>
-          <h3 class="heading-3">Istorija</h3>
+            je u Potočanima.          </p>
+          <h2 class="heading-2 text__center">Istorija</h2>
           <p class="desctiption-text">
             &emsp; U defteru iz 1604. godine u Nahiji Kobaš pominje se napusteno
             selo Gusak. Selo je 1879.godine imalo 18 domaćinstava i 145
             stanovnika (pravoslavci). 1895. godine imalo je 167 stanovnika.
             Prema popisu iz 1971. godine 217 stanovnika. U Drugom svjetskom ratu
-            poginuo je jedan borac NOBJ i četiri civila. Tokom rata 1992-1995.
-            iz mjesne zajednice Gusak-Gajevi poginulo je šest boraca VRS, kojima
-            je podignuto spomen-obilježje u centru sela.
+            poginuo je jedan borac NOBJ i četiri civila. Dana 14.07.2001. godine na mjestu 
+            gdje se ukrštaju lokalni putevi Koin-Han, Vršani i Kokori, sagrađeno je i otkriveno 
+              Tokom rata 1992-1995.
+            iz mjesne zajednice Gusak-Gajevi poginulo je šest boraca VRS, iz MBO Gusak i 
+            Gajevi, koji svoje živote položiše za Republiku Srpsku, za slobodu svojih porodica, 
+            za našu slobodu i slobodu ovih prostora. Sa prostora sela Gusak i Gajevi svoje živote 
+            su položili i na spomen obilježje upisani sledeći borci: <br>
+             &emsp; 1. Vrhovac Miladin, <br>
+             &emsp; 2. Vasilić Ljubiša,  <br>
+             &emsp; 3. Ljubojević Živojin, <br>
+             &emsp; 4. Vrhovac Perica, <br>
+             &emsp; 5. Kalabić Milomir, <br>
+             &emsp; 6. Madžarić Nebojša.  <br>
+            Svake godine 14. jula na praznik Svetih mučenika i besrebrenika Kozme i Damjana
+             na Gusačkom Groblju u 12 časova održavaju se žitne molitve za spas sela od svakojakih
+              opasnosti, za zdravlje mještana, stoke, kao i za zaštitu usjeva od nepogoda. Nakon toga se prelivaju grobovi umrlih članova porodica 
+              od strane sveštenika na zahtjev parohijana. U 14 časova se vrši patastos poginulim borcima kod spomen obilježja gdje prisustvuje veći broj zvanica. 
+              U večernjim časovima na obližnjem igralištu održava se memorijalni turnir u malom fudbalu posvećen poginulim borcima. 
+              Ujedno na pomenutim mjestima se održava zbor koji traje do kasno u noć.
+
           </p>
         </div>
         <!-- <div class="description--image-box"></div> -->
@@ -177,7 +217,7 @@
               <img
                 class="image"
                 src="/src/img/galery/Slike-sela-2022/20210115_160815.jpg"
-                alt=""
+                alt="Image from Gusak"
               />
             </div>
             <button class="btn btn-galery">Slike sela</button>
@@ -188,7 +228,7 @@
               <img
                 class="image"
                 src="/src/img/galery/badnji-dan-2022/DJI_0865.jpg"
-                alt=""
+                alt="Image of Gusak"
               />
             </div>
             <button class="btn btn-galery">Badnji dan 2022</button>
@@ -198,31 +238,31 @@
               <img
                 class="image"
                 src="/src/img/galery/Najuredjenije-dvoriste-2020/backgrounddd.jpg"
-                alt=""
+                alt="Image of Gusak"
               />
             </div>
             <button class="btn btn-galery">Najuređenije dvoriste</button>
           </div>
 
-          <div class="img-box">
+          <div class="img-box" data-set="badnjidan2021">
             <div class="img">
               <img
                 class="image"
-                src="/src/img/galery/badnji-dan-2022/DJI_0859.jpg"
-                alt=""
+                src="/src/img/galery/badnji-dan-2022/DJI_0864.jpg"
+                alt="Image of Gusak"
               />
             </div>
-            <button class="btn btn-galery">badnji dan 2022</button>
+            <button class="btn btn-galery">Badnji dan 2021</button>
           </div>
-          <div class="img-box">
+          <div class="img-box" data-set="badnjidan2019">
             <div class="img">
               <img
                 class="image"
-                src="src/img/galery/badnji-dan-2022/DJI_0859.jpg"
-                alt=""
+                src="src/img/galery/badnji-dan-2019/viber_image_2022-07-19_12-24-18-588.jpg"
+                alt="Image of Gusak"
               />
             </div>
-            <button class="btn btn-galery">Badnji dan 2022</button>
+            <button class="btn btn-galery">Badnji dan 2019</button>
           </div>
         </div>
       </div>
@@ -232,8 +272,16 @@
           <div class="other-box">
             <h2 class="heading-3">Etno kuća za odmor</h2>
             <div class="other--img-box">
-              <img class="other--img" src="/src/img/other/dragan22.png" />
-              <img class="other--img" src="/src/img/other/dragan11.jpg" />
+              <img
+                class="other--img"
+                src="/src/img/other/dragan22.jpg"
+                alt="Image of house"
+              />
+              <img
+                class="other--img"
+                src="/src/img/other/dragan11.jpg"
+                alt="Image of house"
+              />
             </div>
             <ul class="lists">
               <li>
@@ -264,8 +312,17 @@
           <div class="other-box">
             <h2 class="heading-3">Slatka farma Meri</h2>
             <div class="other--img-box">
-              <img class="other--img" src="/src/img/other/magar.jpg" />
-              <img class="other--img" src="/src/img/other/mlijeko-meri.png" />
+              <img
+                class="other--img"
+                src="/src/img/other/magar.jpg"
+                alt="Image
+              of Mery"
+              />
+              <img
+                class="other--img"
+                src="/src/img/other/mlijeko-meri.jpg"
+                alt="Image of Mery"
+              />
             </div>
             <ul class="lists">
               <li>
@@ -283,7 +340,7 @@
               </li>
               <li>
                 <ion-icon class="icon__card" name="call-outline"></ion-icon>
-                <a href="tel:+38766265-051" class="card__link">066/265-051</a>
+                <a href="tel:+38766265051" class="card__link">066/265-051</a>
               </li>
               <li>
                 <ion-icon class="icon__card" name="logo-facebook"></ion-icon>
@@ -300,19 +357,22 @@
       <div id="contact" class="section--contact"></div>
 
       <footer class="foother">
+        
         <h3 class="heading-3">
           Copyright &copy; by
           <a class="links" href="https://www.linkedin.com/in/djordjekljajic/">
             Đorđe Kljajić
-          </a>
+          </a> 
+         
         </h3>
+        <h3 class="heading-3">
+         
+          <a class="links" href="tel:+38765238797">
+            Kontakt telefon: 065/238-797
+          </a> 
+        
       </footer>
     </div>
-    <!-- <script
-     src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-      crossorigin="anonymous"
-    ></script> -->
 
     <script
       type="module"

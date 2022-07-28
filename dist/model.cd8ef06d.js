@@ -1042,7 +1042,7 @@ var loadWeather = /*#__PURE__*/function () {
           case 7:
             _context.prev = 7;
             _context.t0 = _context["catch"](0);
-            console.error("".concat(_context.t0, " bum bam bum"));
+            console.error("".concat(_context.t0));
             throw _context.t0;
 
           case 11:
@@ -1095,23 +1095,22 @@ var loadForecast = /*#__PURE__*/function () {
 
           case 3:
             data = _context2.sent;
-            console.log(data);
             state.forecast = createForecastObject(data);
-            _context2.next = 12;
+            _context2.next = 11;
             break;
 
-          case 8:
-            _context2.prev = 8;
+          case 7:
+            _context2.prev = 7;
             _context2.t0 = _context2["catch"](0);
             console.error("".concat(_context2.t0, " bum bam bum"));
             throw _context2.t0;
 
-          case 12:
+          case 11:
           case "end":
             return _context2.stop();
         }
       }
-    }, _callee2, null, [[0, 8]]);
+    }, _callee2, null, [[0, 7]]);
   }));
 
   return function loadForecast() {
@@ -1331,6 +1330,7 @@ if (urlLocation !== "gallery.html") {
 var galleryFunction = function galleryFunction() {
   var btn = document.querySelectorAll(".img-box").forEach(function (item) {
     item.addEventListener("click", function (e) {
+      e.preventDefault();
       var data = e.target.closest(".img-box").dataset.set;
       window.location.href = "".concat(data, ".html");
     });
@@ -1355,17 +1355,20 @@ var openMNB = document.querySelector(".btn_open-nav");
 var closeMNB = document.querySelector(".btn_close-nav");
 var navList = document.querySelector(".navigation-lists");
 var outside = document.querySelector(".navigation-lists");
-openMNB.addEventListener("click", function () {
+openMNB.addEventListener("click", function (e) {
+  e.preventDefault();
   navList.classList.add("mobile_navigation");
   closeMNB.classList.remove("hidden");
   openMNB.classList.add("hidden");
 });
-outside.addEventListener("click", function () {
+outside.addEventListener("click", function (e) {
+  e.preventDefault();
   navList.classList.remove("mobile_navigation");
   openMNB.classList.remove("hidden");
   closeMNB.classList.add("hidden");
 });
-closeMNB.addEventListener("click", function () {
+closeMNB.addEventListener("click", function (e) {
+  e.preventDefault();
   navList.classList.remove("mobile_navigation");
   openMNB.classList.remove("hidden");
   closeMNB.classList.add("hidden");
@@ -1378,12 +1381,7 @@ var observer = new IntersectionObserver(function (entries) {
   });
 });
 observer.observe(document.querySelector(".section--galery"));
-observer.observe(document.querySelector(".section--other")); /////loading spiner
-
-window.addEventListener("load", function () {
-  spinner.classList.add("hidden");
-  containerIndex.classList.remove("hidden");
-});
+observer.observe(document.querySelector(".section--other"));
 },{"./helpers.js":"src/js/helpers.js","./config.js":"src/js/config.js","regenerator-runtime":"node_modules/regenerator-runtime/runtime.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1412,7 +1410,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51977" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50514" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
